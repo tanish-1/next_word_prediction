@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Prediction Web App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-8">
+        <form action="/" method="post">
+            <div class="mb-4">
+                <label for="input_text" class="block text-sm font-bold mb-2">Enter your text here:</label>
+                <textarea id="input_text" name="input_text" class="w-full border rounded py-2 px-3" rows="4" placeholder="Enter text...">{{ input_text }}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="top_k" class="block text-sm font-bold mb-2">How many words do you need (1-10):</label>
+                <input type="number" id="top_k" name="top_k" class="border rounded py-2 px-3" min="1" max="10" value="{{ top_k }}">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+        </form>
+        {% if error %}
+        <p class="text-red-500 mt-4">{{ error }}</p>
+        {% endif %}
+        {% if prediction %}
+        <div class="mt-8">
+            <h2 class="text-lg font-bold">Predicted List:</h2>
+            <p class="mt-2">{{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
